@@ -10,6 +10,7 @@
  * -----------------------------------------------------------------------------------------------------*/
 @import url('./base/fonts.css');
 @import url('./base/global.css');
+@import url('./base/theme-dark.css');
 @import url('./base/print.css');
 
 /* ----------------------------------------------------------------------------------------------------
@@ -18,7 +19,7 @@
 @import url('./components/header.css');
 @import url('./components/sidebar.css');
 @import url('./components/contentViewer.css');
-@import url('./components/modal.css');
+@import url('./components/setting-modal.css');
 @import url('./components/tags.css');
 
 

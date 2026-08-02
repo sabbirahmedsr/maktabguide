@@ -1,0 +1,76 @@
+/* ==============================================================================
+ *  DARK THEME OVERRIDES
+ *  Applied when html[data-theme="dark"] attribute is set.
+ * ============================================================================== */
+
+[data-theme="dark"] {
+  /* ----------------------------------------------------------------------------------------------------
+   *  GLOBAL THEME COLOR PALETTE (DARK ISLAMIC GREEN / TEAL MODE)
+   * -----------------------------------------------------------------------------------------------------*/
+  --bg-main: #0f172a;                  /* Deep Slate Dark Background */
+  --text-main: #f8fafc;                /* High Contrast White */
+  --text-muted: #94a3b8;               /* Soft Muted Gray */
+  --divider-color: #334155;
+
+  --header-bg: #0f766e;                /* Deep Islamic Teal Header */
+  --header-text: #ffffff;
+  --header-title-text: #fbbf24;        /* Soft Amber Gold */
+  --header-btn-hover-bg: rgba(255, 255, 255, 0.12);
+
+  --sidebar-bg: #1e293b;               /* Surface Dark */
+  --sidebar-border: #334155;
+  --sidebar-title-text: #2dd4bf;        /* Bright Mint Teal */
+  --sidebar-title-border: #0d9488;
+  --nav-link-text: #cbd5e1;
+  --nav-link-active-bg: #0d9488;
+  --nav-link-active-text: #ffffff;
+  --sidebar-overlay-bg: rgba(0, 0, 0, 0.65);
+
+  --title-text-color: #2dd4bf;
+  --section-text-color: #14b8a6;
+  --section-line-color: #0d9488;
+
+  --body-bg: #1e293b;
+  --body-border: #334155;
+  --body-accent-border: #38bdf8;        /* Sky Blue Accent */
+  --body-title-text: #38bdf8;
+  --body-shadow: rgba(0, 0, 0, 0.25);
+
+  --body-danger-bg: #451a1a;
+  --body-danger-border: #7f1d1d;
+  --body-danger-accent: #f87171;
+
+  /* Teacher Dialogue Card (Subtle Dark Emerald - Reduced Visual Load) */
+  --teacher-bg: #132a24;
+  --teacher-accent-border: #0d9488;
+  --teacher-speaker-text: #34d399;
+
+  /* Student Dialogue Card (Subtle Muted Gold / Warm Bronze) */
+  --student-bg: #262015;
+  --student-accent-border: #d97706;
+  --student-speaker-text: #fbbf24;
+
+  /* Classroom Board Style */
+  --board-bg: #022c22;                 /* Dark Chalkboard Green */
+  --board-border: #10b981;
+  --board-text: #ffffff;
+  --board-arabic-text: #fbbf24;
+
+  /* Note / Guidance Box (Cool Slate Blue - Clean & Readable) */
+  --note-bg: #1e293b;
+  --note-border: #38bdf8;
+  --note-title-text: #38bdf8;
+  --note-shadow: rgba(0, 0, 0, 0.3);
+
+  --step-bg-odd: #1e293b;
+  --step-bg-even: #334155;
+  --step-accent-border: #60a5fa;
+
+  --modal-bg: #1e293b;
+  --modal-header-border: #334155;
+  --modal-header-text: #f8fafc;
+  --modal-close-btn-text: #94a3b8;
+  --modal-input-bg: #0f172a;
+  --modal-input-border: #475569;
+  --modal-input-focus-border: #10b981;
+}

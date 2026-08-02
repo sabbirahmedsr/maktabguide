@@ -1,6 +1,6 @@
 /* ==============================================================================
  *  SETTINGS MODAL COMPONENT
- *  Handles application modal settings interface and user preference interactions.
+ *  Handles application modal settings interface, theme switching, and user preferences.
  * ============================================================================== */
 
 export const SettingsModalComponent = {
@@ -9,11 +9,16 @@ export const SettingsModalComponent = {
    *  1. INITIALIZATION & EVENT BINDINGS
    * ============================================================================== */
   init() {
+    // ১. প্রথমে পূর্বে সংরক্ষিত থিম লোড করে অ্যাপ্লাই করবে
+    this.applyInitialTheme();
+
+    // ২. UI ইনজেক্ট করবে
     this.injectSettingsUI();
 
     const settingsBtn = document.getElementById('settings-btn');
     const closeBtn = document.getElementById('closeSettingsBtn');
     const overlay = document.getElementById('modalOverlay');
+    const themeSelect = document.getElementById('themeSelect');
 
     if (settingsBtn) {
       settingsBtn.addEventListener('click', () => this.openModal());
@@ -26,6 +31,11 @@ export const SettingsModalComponent = {
     if (overlay) {
       overlay.addEventListener('click', () => this.closeModal());
     }
+
+    // ৩. থিম চেঞ্জের ইভেন্ট লিসেনার
+    if (themeSelect) {
+      themeSelect.addEventListener('change', (e) => this.setTheme(e.target.value));
+    }
   },
 
   /* ==============================================================================
@@ -33,6 +43,8 @@ export const SettingsModalComponent = {
    * ============================================================================== */
   injectSettingsUI() {
     if (document.getElementById('settingsModal')) return;
+
+    const currentTheme = localStorage.getItem('appTheme') || 'light';
 
     const modalHTML = `
       <div class="modal-overlay" id="modalOverlay"></div>
@@ -42,7 +54,13 @@ export const SettingsModalComponent = {
           <button class="close-btn" id="closeSettingsBtn" aria-label="বন্ধ করুন">&times;</button>
         </div>
         <div class="settings-body">
-          <p>এখানে সেটিংস সম্পর্কিত সুবিধাগুলো রাখা যাবে।</p>
+          <div class="setting-item">
+            <label for="themeSelect">অ্যাপ থিম</label>
+            <select id="themeSelect" class="settings-select">
+              <option value="light" ${currentTheme === 'light' ? 'selected' : ''}>লাইট থিম (Light)</option>
+              <option value="dark" ${currentTheme === 'dark' ? 'selected' : ''}>ডার্ক থিম (Dark)</option>
+            </select>
+          </div>
         </div>
       </div>
     `;
@@ -68,5 +86,22 @@ export const SettingsModalComponent = {
       modal.classList.remove('active');
       overlay.classList.remove('active');
     }
+  },
+
+  /* ==============================================================================
+   *  3. THEME MANAGEMENT LOGIC
+   * ============================================================================== */
+  setTheme(theme) {
+    if (theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    localStorage.setItem('appTheme', theme);
+  },
+
+  applyInitialTheme() {
+    const savedTheme = localStorage.getItem('appTheme') || 'light';
+    this.setTheme(savedTheme);
   }
 };
