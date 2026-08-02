@@ -1,0 +1,264 @@
+/* ==============================================================================
+ *  LAYOUT & APPLICATION STRUCTURE STYLES
+ * ============================================================================== */
+
+/* ------------------------------------------------------------------------------
+ *  1. APPLICATION HEADER & TOOLBAR
+ * ------------------------------------------------------------------------------ */
+header {
+  background-color: var(--header-bg);     
+  height: 60px;               
+  color: var(--header-text);
+  padding: 0 5px;          
+  display: flex;                
+  justify-content: space-between;
+  align-items: center;          
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;                
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+  flex-shrink: 0;
+}
+
+header h1#page-title {
+  font-size: var(--size-title);              
+  color: var(--header-title-text);
+  margin: 0;
+  text-align: center;
+  flex: 1;                       
+  padding: 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;       
+}
+
+.icon-btn {
+  background: none;              
+  border: none;
+  color: var(--header-text);             
+  font-size: 1.25rem;              
+  cursor: pointer;
+  width: 40px;                   
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.icon-btn:hover {
+  background-color: var(--header-btn-hover-bg);
+}
+
+/* ------------------------------------------------------------------------------
+ *  2. HEADER TOGGLE BUTTONS RESPONSIVE DISPLAY
+ * ------------------------------------------------------------------------------ */
+/* Desktop View: Directly hide the left toggle button & right TOC toggle button */
+@media (min-width: 993px) {
+  /* Hides the leftmost toggle button in header */
+  header > .icon-btn:first-child,
+  header > button:first-child,
+  #sidebarToggle,
+  .sidebar-toggle-btn {
+    display: none !important;
+  }
+
+  /* Hides the rightmost TOC toggle button inside .header-actions */
+  .header-actions > .icon-btn:last-child,
+  .header-actions > button:last-child,
+  #tocToggle,
+  .toc-toggle-btn {
+    display: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------------------
+ *  3. THREE-COLUMN APP LAYOUT STRUCTURE
+ * ------------------------------------------------------------------------------ */
+.app-container {
+  display: flex;                
+  justify-content: space-between; 
+  min-height: calc(100vh - 60px); 
+  width: 100%;
+  background-color: var(--bg-main);
+  align-items: flex-start;
+  position: relative;
+  margin-top: 60px;
+}
+
+/* Left Sidebar Desktop */
+.sidebar-left {
+  width: 270px;                  
+  background-color: var(--sidebar-bg);    
+  border-right: 1px solid var(--sidebar-border);
+  padding: 20px 15px;            
+  position: sticky;             
+  top: 60px;                    
+  height: calc(100vh - 60px);    
+  overflow-y: auto;        
+  flex-shrink: 0;
+  box-sizing: border-box;
+  will-change: transform;
+}
+
+/* Right Sidebar Desktop */
+.sidebar-right {
+  width: 280px;                  
+  background-color: var(--sidebar-bg);    
+  border-left: 1px solid var(--sidebar-border);
+  padding: 20px 15px;            
+  position: sticky;          
+  top: 60px;                    
+  height: calc(100vh - 60px);    
+  overflow-y: auto;             
+  flex-shrink: 0;
+  box-sizing: border-box;
+  will-change: transform;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;                      
+  padding: 10px 40px;            
+  max-width: 900px;           
+  margin: 0 auto;          
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------------------
+ *  4. OFFSET FOR HEADER & HIGHLIGHT ANIMATION
+ * ------------------------------------------------------------------------------ */
+.main-content h3, 
+.main-content [id^="sec-"] {
+  scroll-margin-top: 80px;
+  display: inline-block;
+}
+
+.highlight-pulse {
+  animation: springPingPongCenter 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes springPingPongCenter {
+  0%, 100% { transform: translateX(0); }
+  15%      { transform: translateX(25px); }
+  30%      { transform: translateX(-20px); }
+  45%      { transform: translateX(14px); }
+  60%      { transform: translateX(-8px); }
+  75%      { transform: translateX(4px); }
+  90%      { transform: translateX(-2px); }
+}
+
+/* ------------------------------------------------------------------------------
+ *  5. NAVIGATION SIDEBARS (LEFT & RIGHT)
+ * ------------------------------------------------------------------------------ */
+.sidebar-title {
+  font-size: var(--size-sub);              
+  font-weight: bold;            
+  color: var(--sidebar-title-text);
+  text-transform: uppercase;    
+  margin-bottom: 12px;          
+  border-bottom: 2px solid var(--sidebar-title-border);
+  padding-bottom: 4px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  margin-bottom: 8px;
+}
+
+.nav-list a {
+  text-decoration: none;        
+  color: var(--nav-link-text);                
+  font-size: var(--size-sub);
+  display: block;                
+  padding: 8px 12px;             
+  border-radius: var(--radius-sm);
+  transition: 0.2s ease-in-out;
+}
+
+.nav-list a:hover,
+.nav-list a.active {
+  background-color: var(--nav-link-active-bg);                  
+  color: var(--nav-link-active-text);
+}
+
+/* ------------------------------------------------------------------------------
+ *  6. TOUCH DRAG OVERLAY & MOBILE DRAWER STYLES
+ * ------------------------------------------------------------------------------ */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--sidebar-overlay-bg);
+  backdrop-filter: blur(2px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  will-change: opacity;
+}
+
+.sidebar-overlay.active {
+  visibility: visible;
+}
+
+@media (max-width: 992px) {
+  .sidebar-left {
+    position: fixed;              
+    left: 0;
+    top: 60px;                  
+    width: 280px;                    
+    height: calc(100vh - 60px);
+    z-index: 999;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.15);
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sidebar-left.open { 
+    transform: translateX(0);
+  }
+
+  .sidebar-right {
+    position: fixed;              
+    right: 0;
+    top: 60px;                  
+    width: 280px;                    
+    height: calc(100vh - 60px);
+    z-index: 999;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.15);
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sidebar-right.open { 
+    transform: translateX(0);
+  }
+
+  .main-content { 
+    padding: 10px 15px; 
+  }
+  
+  header h1#page-title {
+    font-size: 1.1rem;          
+  }
+}

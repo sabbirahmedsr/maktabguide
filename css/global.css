@@ -1,0 +1,148 @@
+/* ==============================================================================
+ *  1. GLOBAL THEME VARIABLES, TYPOGRAPHY & RESET
+ *  Purpose: Centralized design tokens for full theme support (Light/Dark)
+ * ============================================================================== */
+
+:root {
+  /* ---------------------------------------------
+   * FONT FAMILIES
+   * --------------------------------------------- */
+  --font-base: 'Noto Sans Bengali', 'Rubik', 'Amiri', 'Segoe UI', sans-serif;
+  --font-arabic: 'Amiri', 'Rubik', 'Noto Sans Bengali', serif;
+
+  /* ---------------------------------------------
+   * FONT SIZES & LINE HEIGHTS
+   * --------------------------------------------- */
+  --size-base: 1.125rem;          /* Body Text (~18px) */
+  --size-title: 1.75rem;          /* Header Title */
+  --size-section: 1.35rem;        /* Section Headings */
+  --size-dialogue: 1.25rem;       /* Dialogue Text Size */
+  --size-sub: 1rem;               /* Subtitle & Links */
+  --size-arabic: 2.5rem;          /* Blackboard Arabic Size */
+  --line-height-body: 1.7;
+
+  /* ---------------------------------------------
+   * BORDER RADIUS & SPACING
+   * --------------------------------------------- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* ---------------------------------------------
+   * GLOBAL & LAYOUT COLORS
+   * --------------------------------------------- */
+  --bg-main: #fdfbf7;
+  --text-main: #2c3e50;
+  --text-muted: #64748b;
+  --divider-color: #cbd5e1;
+
+  /* ---------------------------------------------
+   * HEADER & TOOLBAR COLORS
+   * --------------------------------------------- */
+  --header-bg: #1a4d3e;
+  --header-text: #ffffff;
+  --header-title-text: #f1c40f;
+  --header-btn-hover-bg: rgba(255, 255, 255, 0.15);
+
+  /* ---------------------------------------------
+   * SIDEBAR & NAVIGATION COLORS
+   * --------------------------------------------- */
+  --sidebar-bg: #f4f6f5;
+  --sidebar-border: #e0e0e0;
+  --sidebar-title-text: #1a4d3e;
+  --sidebar-title-border: #27ae60;
+  --nav-link-text: #444444;
+  --nav-link-active-bg: #27ae60;
+  --nav-link-active-text: #ffffff;
+  --sidebar-overlay-bg: rgba(0, 0, 0, 0.4);
+
+  /* ---------------------------------------------
+   * TAG: TITLE & SECTION COLORS
+   * --------------------------------------------- */
+  --title-text-color: #1a4d3e;
+  --section-text-color: #059669;
+  --section-line-color: #059669;
+
+  /* ---------------------------------------------
+   * TAG: BODY COMPONENT COLORS
+   * --------------------------------------------- */
+  --body-bg: #f4f6f7;
+  --body-border: #d5dbdb;
+  --body-accent-border: #2980b9;
+  --body-title-text: #2980b9;
+  --body-shadow: rgba(0, 0, 0, 0.03);
+
+  /* Body Danger / Red Variant */
+  --body-danger-bg: #fdf2f2;
+  --body-danger-border: #f5c6cb;
+  --body-danger-accent: #e74c3c;
+
+  /* ---------------------------------------------
+   * TAG: DIALOGUE COLORS (TEACHER & STUDENT)
+   * --------------------------------------------- */
+  --teacher-bg: #eef7f2;
+  --teacher-accent-border: #27ae60;
+  --teacher-speaker-text: #1e8449;
+
+  --student-bg: #fff9e6;
+  --student-accent-border: #f39c12;
+  --student-speaker-text: #d68910;
+
+  /* ---------------------------------------------
+   * TAG: BOARD COLORS
+   * --------------------------------------------- */
+  --board-bg: #1b2a26;
+  --board-border: #a3e635;
+  --board-text: #ffffff;
+  --board-arabic-text: #f1c40f;
+
+  /* ---------------------------------------------
+   * TAG: NOTE & TIP COLORS
+   * --------------------------------------------- */
+  --note-bg: #f0fdf4;
+  --note-border: #22c55e;
+  --note-title-text: #15803d;
+  --note-shadow: rgba(0, 0, 0, 0.05);
+
+  /* ---------------------------------------------
+   * TAG: STEP COLORS
+   * --------------------------------------------- */
+  --step-bg-odd: #f8fafc;
+  --step-bg-even: #f1f5f9;
+  --step-accent-border: #3b82f6;
+
+  /* ---------------------------------------------
+   * MODAL & SETTINGS COLORS
+   * --------------------------------------------- */
+  --modal-bg: #ffffff;
+  --modal-header-border: #f1f5f9;
+  --modal-header-text: #1e293b;
+  --modal-close-btn-text: #64748b;
+  --modal-input-bg: #f8fafc;
+  --modal-input-border: #cbd5e1;
+  --modal-input-focus-border: #059669;
+}
+
+/* ==============================================================================
+ *  1. GLOBAL RESET & BASE STYLES
+ * ============================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;        
+  margin: 0;         
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  font-family: var(--font-base);
+  font-size: var(--size-base);
+  line-height: var(--line-height-body);
+  background-color: var(--bg-main);                          
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

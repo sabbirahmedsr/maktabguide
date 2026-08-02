@@ -1,0 +1,38 @@
+
+
+/* ==============================================================================
+ *  PRINT & PDF STYLING RULES
+ * ============================================================================== */
+
+@media print {
+  @page { 
+    size: A4; 
+    margin: 15mm 12mm; 
+  }
+
+  header, .sidebar-left, .sidebar-right, .mobile-menu-btn, .sidebar-overlay {
+    display: none !important;
+  }
+
+  .app-container { 
+    display: block; 
+  }
+  
+  .main-content { 
+    max-width: 100%; 
+    padding: 0; 
+  }
+
+  .tag-board {
+    background-color: var(--board-bg) !important;                     
+    color: var(--board-text) !important;
+    -webkit-print-color-adjust: exact;                        
+    print-color-adjust: exact;
+  }
+
+  .teacher-msg, .student-msg, .tag-note {
+    -webkit-print-color-adjust: exact;                        
+    print-color-adjust: exact;
+    page-break-inside: avoid;
+  }
+}

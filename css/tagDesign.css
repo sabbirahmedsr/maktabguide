@@ -1,0 +1,271 @@
+/* ==============================================================================
+ *  1. TITLE & SECTION HEADINGS
+ * ============================================================================== */
+
+.tag-title {
+  font-size: var(--size-title);
+  font-weight: bold;
+  color: var(--title-text-color);
+  margin: 24px 0 12px 0;
+  text-align: center;
+  position: relative;
+  word-break: break-word;
+}
+
+.section-title-divider {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100% !important;
+  box-sizing: border-box;
+  margin: 35px 0 25px 0;
+  color: var(--section-text-color);
+  font-size: var(--size-section);
+  font-weight: 700;
+  gap: 12px; 
+  word-break: break-word;
+}
+
+/* Two Side Line Divider */
+.section-title-divider::before,
+.section-title-divider::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  display: block;
+}
+
+.section-title-divider::before {
+  background: linear-gradient(to left, var(--section-line-color), transparent);
+}
+
+.section-title-divider::after {
+  background: linear-gradient(to right, var(--section-line-color), transparent);
+}
+
+
+/* ==============================================================================
+ *  2. BODY COMPONENT (Unified Block)
+ * ============================================================================== */
+
+.tag-body {
+  background-color: var(--body-bg);
+  border: 1px solid var(--body-border);
+  border-left: 5px solid var(--body-accent-border);
+  padding: 16px 20px;
+  margin: 18px 0;
+  border-radius: var(--radius-md);
+  font-size: var(--size-base);
+  color: inherit;
+  box-shadow: 0 2px 5px var(--body-shadow);
+  word-wrap: break-word;
+}
+
+.tag-body-red,
+.tag-body-danger {
+  background-color: var(--body-danger-bg);
+  border: 1px solid var(--body-danger-border);
+  border-left: 5px solid var(--body-danger-accent);
+  padding: 16px 20px;
+  margin: 18px 0;
+  border-radius: var(--radius-md);
+  font-size: var(--size-base);
+  color: inherit;
+  box-shadow: 0 2px 5px var(--body-shadow);
+  word-wrap: break-word;
+}
+
+.tag-body ul, 
+.tag-body ol {
+  margin-left: 20px;
+  margin-top: 8px;
+}
+
+.tag-body .tag-body-title {
+  font-weight: bold;
+  color: var(--body-title-text);
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+  display: inline;
+}
+
+.tag-body-bold {
+  font-weight: 700;
+}
+
+.tag-body-subtext {
+  color: var(--text-muted);   
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+.tag-body-divider {
+  border: none;
+  border-top: 1.5px dashed var(--divider-color);
+  margin: 12px 0;
+  width: 100%;
+}
+
+
+/* ==============================================================================
+ *  3. DIALOGUES (TEACHER & STUDENT)
+ * ============================================================================== */
+
+.dialogue-container {
+  display: flex;                
+  flex-direction: column;       
+  gap: 12px;
+  margin: 20px 0;
+  font-size: var(--size-dialogue);
+  font-weight: 450;  
+}
+
+.teacher-msg {
+  align-self: flex-start;       
+  background-color: var(--teacher-bg);
+  border-left: 4px solid var(--teacher-accent-border);
+  padding: 14px 18px;            
+  border-radius: var(--radius-md) var(--radius-md) var(--radius-md) 0;
+  max-width: 85%;                
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  word-wrap: break-word;
+}
+
+.student-msg {
+  align-self: flex-end;         
+  background-color: var(--student-bg);
+  border-right: 4px solid var(--student-accent-border);
+  padding: 14px 18px;            
+  border-radius: var(--radius-md) var(--radius-md) 0 var(--radius-md);
+  max-width: 85%;                
+  text-align: left;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  word-wrap: break-word;
+}
+
+.speaker-tag {
+  font-weight: bold;            
+  margin-bottom: 6px;            
+  font-size: var(--size-sub);
+}
+
+.teacher-msg .speaker-tag { color: var(--teacher-speaker-text); }
+.student-msg .speaker-tag { text-align: right; color: var(--student-speaker-text); }
+
+@media (max-width: 768px) {
+  .teacher-msg, .student-msg {
+    max-width: 95%;
+  }
+}
+
+
+/* ==============================================================================
+ *  4. BOARD & NOTES
+ * ============================================================================== */
+
+.tag-board {
+  background-color: var(--board-bg);                          
+  color: var(--board-text);
+  border: 2px solid var(--board-border);                      
+  padding: 24px;
+  border-radius: var(--radius-md);           
+  text-align: center;            
+  margin: 20px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  word-break: break-word;
+}
+
+.arabic-text {
+  direction: rtl;
+  text-align: right;
+  color: inherit; 
+  margin: 6px 0;
+}
+.arabic-text:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: var(--radius-sm, 4px);
+  padding: 2px 6px;
+}
+
+.tag-note {
+  background-color: var(--note-bg);
+  border: 1px dashed var(--note-border);
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-radius: var(--radius-sm);
+  font-size: var(--size-base);
+  color: inherit;
+  box-shadow: 0 4px 12px var(--note-shadow);
+  word-wrap: break-word;
+}
+
+.tag-note .tag-note-title {
+  font-weight: bold;
+  color: var(--note-title-text);
+  margin-bottom: 6px;
+  font-size: var(--size-sub);
+}
+
+
+/* ==============================================================================
+ *  5. STEPS 
+ * ============================================================================== */
+
+.tag-step {
+  background: var(--step-bg-odd);
+  border-left: 3px solid var(--step-accent-border);
+  padding: 10px 14px;
+  margin: 8px 0;
+  border-radius: 4px;
+  word-wrap: break-word;
+}
+
+.tag-step:nth-child(even) {
+  background: var(--step-bg-even);
+}
+
+
+/* ==============================================================================
+ *  6. IMAGE COMPONENT STYLES
+ * ============================================================================== */
+
+.tag-image-container {
+  width: 100%;
+  margin: 15px 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.tag-image {
+  width: 100%;
+  height: auto; /* Aspect ratio ঠিক রাখার জন্য */
+  display: block;
+  border-radius: var(--radius-sm, 6px);
+  object-fit: contain;
+}
+
+.tag-image-caption {
+  font-size: var(--size-sub, 0.9rem);
+  color: var(--text-muted, #666);
+  text-align: center;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+
+
+/* ==============================================================================
+ *  7. GLOBAL SECTION BREAK ('---')
+ * ============================================================================== */
+
+.section-break-divider {
+  border: 0;
+  height: 1px;
+  width: 100% !important;
+  background: linear-gradient(to right, transparent, var(--section-line-color), transparent);
+  margin: 30px 0;
+  opacity: 0.6;
+  box-sizing: border-box;
+}
+
