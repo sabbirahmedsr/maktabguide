@@ -1,14 +1,13 @@
 /* ==============================================================================
- *  TAG PARSER MODULE (OFFLINE OPTIMIZED & RAW HTML SUPPORTED)
- *  Purpose: Converts custom text/markdown short tags into structured HTML elements.
+ *  1. TAG PARSER MODULE (OFFLINE OPTIMIZED & RAW HTML SUPPORTED)
+ *  Converts custom text/markdown short tags into structured HTML elements
  * ============================================================================== */
 
 export const TagParser = {
 
-  // =======================================================
-  // 1. MAIN TEXT PARSING ENGINE
-  // =======================================================
-
+  /* ==============================================================================
+   *  1.1 MAIN TEXT PARSING ENGINE
+   * ============================================================================== */
   parseText(rawText, rightSidebarNav) {
     if (rightSidebarNav) rightSidebarNav.innerHTML = '';
 
@@ -33,12 +32,12 @@ export const TagParser = {
     lines.forEach((line) => {
       const trimmedLine = line.trim();
 
-      // Ignore lines starting with '==='
+      // [note] Ignore lines starting with '==='
       if (trimmedLine.startsWith('===')) {
         return;
       }
 
-      // Standalone '---' (Global Section Break)
+      // [note] Standalone '---' (Global Section Break)
       if (trimmedLine === '---') {
         flushBlock();
         const hr = document.createElement('hr');
@@ -47,7 +46,7 @@ export const TagParser = {
         return;
       }
 
-      // Check for start of new block tags (excluding inline tags like [ar])
+      // [note] Check for start of new block tags (excluding inline tags like [ar])
       if (trimmedLine.startsWith('[') && !trimmedLine.startsWith('[//')) {
         const isNewTag = /^\[\/?[a-zA-Z\-]+(?::.*)?\]/.test(trimmedLine);
         const isInlineTag = /^\[\/?ar\]/i.test(trimmedLine);
@@ -64,13 +63,9 @@ export const TagParser = {
     return fragment;
   },
 
-
-
-
-  // =======================================================
-  // 2. CONTENT FORMATTING HELPERS
-  // =======================================================
-
+  /* ==============================================================================
+   *  1.2 CONTENT FORMATTING HELPERS
+   * ============================================================================== */
   formatBlockContent(rawContent, isInlineFirstLine = false) {
     const lines = rawContent.split('\n');
     let htmlLines = [];
@@ -84,14 +79,14 @@ export const TagParser = {
         return;
       }
 
-      // Check if line starts with [ar] tag
+      // [note] Check if line starts with [ar] tag
       if (/^\[ar\]/i.test(trimmedLine)) {
         const arabicContent = trimmedLine.replace(/^\[ar\]/i, '').trim();
         htmlLines.push(`<div class="arabic-text">${arabicContent}</div>`);
         return;
       }
 
-      // Process bold formatting
+      // [note] Process bold formatting
       trimmedLine = trimmedLine.replace(/\*\*(.*?)\*\*/g, '<strong class="tag-body-bold">$1</strong>');
 
       if (trimmedLine.startsWith('~')) {
@@ -109,13 +104,9 @@ export const TagParser = {
     return htmlLines.join('');
   },
 
-
-
-
-  // =======================================================
-  // 3. HTML ELEMENT GENERATORS
-  // =======================================================
-
+  /* ==============================================================================
+   *  1.3 HTML ELEMENT GENERATORS
+   * ============================================================================== */
   createHTMLElement(trimmed, rightSidebarNav) {
     const match = trimmed.match(/^\[([a-zA-Z\-]+)(?::\s*([^\]]+))?\]\s*([\s\S]*)/);
     if (!match) return null;
@@ -124,13 +115,9 @@ export const TagParser = {
     const rawCaptionAndMod = match[2] ? match[2].trim() : null;
     const content = match[3].trim();
 
-
-
-
-    // =======================================================
-    // 1. TITLE & SECTION HEADINGS
-    // =======================================================
-
+    /* ----------------------------------------------------------------------------------------------------
+     *  1.3.1 TITLE & SECTION HEADINGS GENERATOR
+     * -----------------------------------------------------------------------------------------------------*/
     // [title] / [t]
     if (['title', 't'].includes(tagName)) {
       const el = document.createElement('h2');
@@ -171,13 +158,9 @@ export const TagParser = {
       return el;
     }
 
-
-
-
-    // =======================================================
-    // 2. BODY COMPONENT (Unified Block)
-    // =======================================================
-
+    /* ----------------------------------------------------------------------------------------------------
+     *  1.3.2 UNIFIED BODY COMPONENT GENERATOR
+     * -----------------------------------------------------------------------------------------------------*/
     // [body] / [bdy]
     if (['body', 'bdy'].includes(tagName)) {
       let caption = null;
@@ -210,13 +193,9 @@ export const TagParser = {
       return div;
     }
 
-
-
-
-    // =======================================================
-    // 3. DIALOGUES (TEACHER & STUDENT)
-    // =======================================================
-
+    /* ----------------------------------------------------------------------------------------------------
+     *  1.3.3 DIALOGUES GENERATOR (TEACHER & STUDENT)
+     * -----------------------------------------------------------------------------------------------------*/
     // [teacher] / [teach] / [tchr]
     if (['teacher', 'teach', 'tchr'].includes(tagName)) {
       const formattedContent = this.formatBlockContent(content);
@@ -243,13 +222,9 @@ export const TagParser = {
       return div;
     }
 
-
-
-
-    // =======================================================
-    // 4. BOARD & NOTES
-    // =======================================================
-
+    /* ----------------------------------------------------------------------------------------------------
+     *  1.3.4 BOARD AND NOTES GENERATOR
+     * -----------------------------------------------------------------------------------------------------*/
     // [board] / [brd] / [b]
     if (['board', 'brd', 'b'].includes(tagName)) {
       const div = document.createElement('div');
@@ -269,13 +244,9 @@ export const TagParser = {
       return div;
     }
 
-
-
-
-    // =======================================================
-    // 5. STEPS
-    // =======================================================
-
+    /* ----------------------------------------------------------------------------------------------------
+     *  1.3.5 STEPS & IMAGE COMPONENTS GENERATOR
+     * -----------------------------------------------------------------------------------------------------*/
     // [step] / [stp]
     if (['step', 'stp'].includes(tagName)) {
       const div = document.createElement('div');
@@ -283,12 +254,6 @@ export const TagParser = {
       div.innerHTML = `<strong>🔹 </strong> ${this.formatBlockContent(content, true)}`;
       return div;
     }
-    
-
-
-    // =======================================================
-    // 6. IMAGE COMPONENT
-    // =======================================================
 
     // [image] / [img]
     if (['image', 'img'].includes(tagName)) {

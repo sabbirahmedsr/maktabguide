@@ -1,7 +1,6 @@
-
-
 /* ==============================================================================
- *  PRINT & PDF STYLING RULES
+ *  PRINT & PDF EXPORT RULES
+ *  Styles applied exclusively when printing or exporting pages to PDF.
  * ============================================================================== */
 
 @media print {

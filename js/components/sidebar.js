@@ -1,11 +1,9 @@
-/*
-// ==============================================================================
-// LAYOUT CONTROLLER WITH TOUCH DRAG GESTURES
-// Complete touch gesture handler for mobile sidebars with backdrop tracking.
-// ==============================================================================
-*/
+/* ==============================================================================
+ *  SIDEBAR COMPONENT
+ *  Handles left/right sidebar rendering, drawer toggles and touch drag gestures.
+ * ============================================================================== */
 
-export const LayoutController = {
+export const SidebarComponent = {
   leftSidebar: null,
   rightSidebar: null,
   overlay: null,
@@ -18,10 +16,10 @@ export const LayoutController = {
   sidebarWidth: 280,
   rafId: null,
 
-  // ==============================================================================
-  // 1. LAYOUT INITIALIZATION & EVENT BINDINGS
-  // DOM element discovery and event listener registrations.
-  // ==============================================================================
+  /* ==============================================================================
+   *  1. INITIALIZATION & SETUP
+   *  Finds sidebar elements, binds backdrop overlay and window resize listeners.
+   * ============================================================================== */
   init() {
     this.leftSidebar = document.getElementById('sidebarLeft') || document.querySelector('.sidebar-left');
     this.rightSidebar = document.getElementById('sidebarRight') || document.querySelector('.sidebar-right');
@@ -33,19 +31,54 @@ export const LayoutController = {
 
     this.initTouchGestures();
 
-    // Reset drawer states when returning to desktop screen sizes
     window.addEventListener('resize', () => {
       if (window.innerWidth > 992) {
         this.closeAll();
-        document.body.style.overflow = ''; // স্ক্রল লক ক্লিনআউট নিশ্চিত করবে
+        document.body.style.overflow = '';
       }
     });
   },
 
-  // ==============================================================================
-  // 2. TOGGLE & OPEN/CLOSE ACTION HANDLERS
-  // Controls drawer open and close states explicitly.
-  // ==============================================================================
+  /* ==============================================================================
+   *  2. RENDER LEFT SIDEBAR MENU
+   *  Builds left menu list dynamically and handles active item styling.
+   * ============================================================================== */
+  renderLeftSidebar(contentList, onSelectCallback) {
+    const navList = document.querySelector('.sidebar-left .nav-list');
+    if (!navList) return;
+
+    navList.innerHTML = '';
+    const savedFilePath = localStorage.getItem('activeFilePath');
+
+    contentList.forEach((item, index) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#';
+      a.textContent = item.title;
+
+      if (savedFilePath ? item.filePath === savedFilePath : index === 0) {
+        a.classList.add('active');
+      }
+
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        onSelectCallback(item.filePath, a);
+      });
+
+      li.appendChild(a);
+      navList.appendChild(li);
+    });
+  },
+
+  setActiveNavLink(clickedLink) {
+    const navLinks = document.querySelectorAll('.sidebar-left .nav-list a');
+    navLinks.forEach(link => link.classList.remove('active'));
+    if (clickedLink) clickedLink.classList.add('active');
+  },
+
+  /* ==============================================================================
+   *  3. TOGGLE & OPEN/CLOSE ACTIONS
+   * ============================================================================== */
   toggleLeft() {
     if (this.leftSidebar?.classList.contains('open')) {
       this.closeAll();
@@ -95,10 +128,6 @@ export const LayoutController = {
     document.body.style.overflow = '';
   },
 
-  // ---------------------------------------------
-  // OVERLAY CONTROLLERS
-  // Controls background overlay opacity dynamically
-  // ---------------------------------------------
   showOverlay(opacity = 1) {
     if (this.overlay) {
       this.overlay.classList.add('active');
@@ -115,10 +144,10 @@ export const LayoutController = {
     }
   },
 
-  // ==============================================================================
-  // 3. TOUCH DRAG GESTURE ENGINE
-  // Advanced touch listeners for edge gestures and dynamic drag transforms.
-  // ==============================================================================
+  /* ==============================================================================
+   *  4. TOUCH DRAG GESTURE ENGINE
+   *  Edge touch detection and gesture drag mechanics for mobile screens.
+   * ============================================================================== */
   initTouchGestures() {
     const edgePercentage = 0.10; // 10% Edge Area
 
@@ -136,17 +165,14 @@ export const LayoutController = {
       const isLeftOpen = this.leftSidebar?.classList.contains('open');
       const isRightOpen = this.rightSidebar?.classList.contains('open');
 
-      // ---------------------------------------------
-      // LEFT SIDEBAR DRAG CHECK
-      // ---------------------------------------------
+      /* ----------------------------------------------------------------------------------------------------
+       *  4.1 LEFT & RIGHT DRAG START CHECKS
+       * -----------------------------------------------------------------------------------------------------*/
       if ((this.startX <= edgeThreshold && !isRightOpen) || isLeftOpen) {
         this.isDraggingLeft = true;
         this.prepareDrag(this.leftSidebar);
       }
 
-      // ---------------------------------------------
-      // RIGHT SIDEBAR DRAG CHECK
-      // ---------------------------------------------
       if ((this.startX >= windowWidth - edgeThreshold && !isLeftOpen) || isRightOpen) {
         this.isDraggingRight = true;
         this.prepareDrag(this.rightSidebar);
@@ -160,7 +186,6 @@ export const LayoutController = {
       const deltaX = touch.clientX - this.startX;
       const deltaY = touch.clientY - this.startY;
 
-      // Vertical vs Horizontal scroll detection logic
       if (!this.isScrollLocked) {
         if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 8) {
           this.resetDragStates();
@@ -177,7 +202,6 @@ export const LayoutController = {
       if (this.rafId) cancelAnimationFrame(this.rafId);
 
       this.rafId = requestAnimationFrame(() => {
-        // --- Left Sidebar Movement ---
         if (this.isDraggingLeft && this.leftSidebar) {
           const isAlreadyOpen = this.leftSidebar.classList.contains('open');
           let translateX;
@@ -193,7 +217,6 @@ export const LayoutController = {
           this.showOverlay(progress);
         }
 
-        // --- Right Sidebar Movement ---
         if (this.isDraggingRight && this.rightSidebar) {
           const isAlreadyOpen = this.rightSidebar.classList.contains('open');
           let translateX;
@@ -219,9 +242,6 @@ export const LayoutController = {
       const touch = e.changedTouches[0];
       const deltaX = touch.clientX - this.startX;
 
-      // ---------------------------------------------
-      // LEFT SIDEBAR RELEASE THRESHOLD
-      // ---------------------------------------------
       if (this.isDraggingLeft && this.leftSidebar) {
         this.cleanupDrag(this.leftSidebar);
         const isAlreadyOpen = this.leftSidebar.classList.contains('open');
@@ -237,9 +257,6 @@ export const LayoutController = {
         }
       }
 
-      // ---------------------------------------------
-      // RIGHT SIDEBAR RELEASE THRESHOLD
-      // ---------------------------------------------
       if (this.isDraggingRight && this.rightSidebar) {
         this.cleanupDrag(this.rightSidebar);
         const isAlreadyOpen = this.rightSidebar.classList.contains('open');
@@ -259,9 +276,6 @@ export const LayoutController = {
     });
   },
 
-  // ---------------------------------------------
-  // DRAG HELPERS
-  // ---------------------------------------------
   prepareDrag(element) {
     if (!element) return;
     element.style.transition = 'none';

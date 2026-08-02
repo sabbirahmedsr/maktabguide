@@ -1,0 +1,86 @@
+/* ==============================================================================
+ *  HEADER COMPONENT STYLES
+ *  Styles for top fixed toolbar, titles and header icon buttons.
+ * ============================================================================== */
+
+/* ==============================================================================
+ *  1. NAVBAR CONTAINER & ELEMENTS
+ * ============================================================================== */
+
+header {
+  background-color: var(--header-bg);     
+  height: 60px;               
+  color: var(--header-text);
+  padding: 0 5px;          
+  display: flex;                
+  justify-content: space-between;
+  align-items: center;          
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;                
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+  flex-shrink: 0;
+}
+
+header h1#page-title {
+  font-size: var(--size-title);              
+  color: var(--header-title-text);
+  margin: 0;
+  text-align: center;
+  flex: 1;                       
+  padding: 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;       
+}
+
+.icon-btn {
+  background: none;              
+  border: none;
+  color: var(--header-text);             
+  font-size: 1.25rem;              
+  cursor: pointer;
+  width: 40px;                   
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.icon-btn:hover {
+  background-color: var(--header-btn-hover-bg);
+}
+
+
+/* ==============================================================================
+ *  2. RESPONSIVE VISIBILITY RULES
+ * ============================================================================== */
+
+/* Desktop View: Directly hide the left toggle button & right TOC toggle button */
+@media (min-width: 993px) {
+  header > .icon-btn:first-child,
+  header > button:first-child,
+  #sidebarToggle,
+  .sidebar-toggle-btn {
+    display: none !important;
+  }
+
+  .header-actions > .icon-btn:last-child,
+  .header-actions > button:last-child,
+  #tocToggle,
+  .toc-toggle-btn {
+    display: none !important;
+  }
+}

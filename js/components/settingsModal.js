@@ -1,15 +1,13 @@
-/*
-// ==============================================================================
-// SETTINGS MANAGEMENT MODULE
-// Purpose: Handles application modal settings interface and user preferences.
-// ==============================================================================
-*/
+/* ==============================================================================
+ *  SETTINGS MODAL COMPONENT
+ *  Handles application modal settings interface and user preference interactions.
+ * ============================================================================== */
 
-export const Settings = {
+export const SettingsModalComponent = {
 
-  // ==============================================================================
-  // 1. INITIALIZATION & EVENT BINDINGS
-  // ==============================================================================
+  /* ==============================================================================
+   *  1. INITIALIZATION & EVENT BINDINGS
+   * ============================================================================== */
   init() {
     this.injectSettingsUI();
 
@@ -30,9 +28,9 @@ export const Settings = {
     }
   },
 
-  // ==============================================================================
-  // 2. UI INJECTION & MODAL HANDLERS
-  // ==============================================================================
+  /* ==============================================================================
+   *  2. UI INJECTION & MODAL TOGGLES
+   * ============================================================================== */
   injectSettingsUI() {
     if (document.getElementById('settingsModal')) return;
 
@@ -52,9 +50,6 @@ export const Settings = {
     document.body.insertAdjacentHTML('beforeend', modalHTML);
   },
 
-  // ---------------------------------------------
-  // MODAL TOGGLE METHODS
-  // ---------------------------------------------
   openModal() {
     const modal = document.getElementById('settingsModal');
     const overlay = document.getElementById('modalOverlay');

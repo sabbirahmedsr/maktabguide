@@ -1,11 +1,31 @@
 /* ==============================================================================
  *  MAIN CSS BUNDLER
- *  Purpose: Importing all modular CSS stylesheets into a single entry point
+ *  Importing modular base & component CSS files into single stylesheet entry point.
  * ============================================================================== */
 
-@import url('./fonts.css');
-@import url('./global.css');
-@import url('./layout.css');
-@import url('./tagDesign.css');
-@import url('./print.css');
-@import url('./settings.css');
+
+ 
+/* ----------------------------------------------------------------------------------------------------
+ *  1. BASE STYLES & FONTS
+ * -----------------------------------------------------------------------------------------------------*/
+@import url('./base/fonts.css');
+@import url('./base/global.css');
+@import url('./base/print.css');
+
+/* ----------------------------------------------------------------------------------------------------
+ *  2. UI COMPONENT STYLES
+ * -----------------------------------------------------------------------------------------------------*/
+@import url('./components/header.css');
+@import url('./components/sidebar.css');
+@import url('./components/contentViewer.css');
+@import url('./components/modal.css');
+@import url('./components/tags.css');
+
+
+@font-face {
+  font-family: 'Rubik';
+  src: url('../assets/fonts/Rubik-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 500 900;  
+  font-style: normal;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}

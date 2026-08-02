@@ -1,0 +1,132 @@
+/* ==============================================================================
+ *  SIDEBAR & NAVIGATION DRAWER STYLES
+ *  Styles for left/right navigation drawers, nav lists, touch overlay & mobile views.
+ * ============================================================================== */
+
+/* ==============================================================================
+ *  1. DESKTOP SIDEBARS & NAVIGATION LIST
+ * ============================================================================== */
+
+/* Left Sidebar Desktop */
+.sidebar-left {
+  width: 270px;                  
+  background-color: var(--sidebar-bg);    
+  border-right: 1px solid var(--sidebar-border);
+  padding: 20px 15px;            
+  position: sticky;             
+  top: 60px;                    
+  height: calc(100vh - 60px);    
+  overflow-y: auto;        
+  flex-shrink: 0;
+  box-sizing: border-box;
+  will-change: transform;
+}
+
+/* Right Sidebar Desktop */
+.sidebar-right {
+  width: 280px;                  
+  background-color: var(--sidebar-bg);    
+  border-left: 1px solid var(--sidebar-border);
+  padding: 20px 15px;            
+  position: sticky;          
+  top: 60px;                    
+  height: calc(100vh - 60px);    
+  overflow-y: auto;             
+  flex-shrink: 0;
+  box-sizing: border-box;
+  will-change: transform;
+}
+
+.sidebar-title {
+  font-size: var(--size-sub);              
+  font-weight: bold;            
+  color: var(--sidebar-title-text);
+  text-transform: uppercase;    
+  margin-bottom: 12px;          
+  border-bottom: 2px solid var(--sidebar-title-border);
+  padding-bottom: 4px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  margin-bottom: 8px;
+}
+
+.nav-list a {
+  text-decoration: none;        
+  color: var(--nav-link-text);                
+  font-size: var(--size-sub);
+  display: block;                
+  padding: 8px 12px;             
+  border-radius: var(--radius-sm);
+  transition: 0.2s ease-in-out;
+}
+
+.nav-list a:hover,
+.nav-list a.active {
+  background-color: var(--nav-link-active-bg);                  
+  color: var(--nav-link-active-text);
+}
+
+
+/* ==============================================================================
+ *  2. MOBILE DRAWER & TOUCH OVERLAY
+ * ============================================================================== */
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--sidebar-overlay-bg);
+  backdrop-filter: blur(2px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  will-change: opacity;
+}
+
+.sidebar-overlay.active {
+  visibility: visible;
+}
+
+@media (max-width: 992px) {
+  .sidebar-left {
+    position: fixed;              
+    left: 0;
+    top: 60px;                  
+    width: 280px;                    
+    height: calc(100vh - 60px);
+    z-index: 999;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.15);
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sidebar-left.open { 
+    transform: translateX(0);
+  }
+
+  .sidebar-right {
+    position: fixed;              
+    right: 0;
+    top: 60px;                  
+    width: 280px;                    
+    height: calc(100vh - 60px);
+    z-index: 999;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.15);
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sidebar-right.open { 
+    transform: translateX(0);
+  }
+}
