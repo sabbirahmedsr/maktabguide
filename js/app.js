@@ -79,8 +79,28 @@ async function initApp() {
 // Fetches text files and updates main viewport & title bar.
 // ==============================================================================
 async function loadTextContent(filePath, element = null) {
+  const mainContent = document.getElementById('mainContent');
+
+  // ১. একটি ডিলে টাইমার সেট করা (যেমন: ২০০ মিলি-সেকেন্ডের বেশি সময় লাগলে তবেই লোডার দেখাবে)
+  let showLoaderTimer = setTimeout(() => {
+    if (mainContent) {
+      mainContent.innerHTML = `
+        <div class="page-loader">
+          <div class="spinner"></div>
+          <p>লোড হচ্ছে...</p>
+        </div>
+      `;
+    }
+  }, 200);
+
   try {
     if (!filePath) throw new Error('File path is undefined');
+
+    // স্মুথলি স্ক্রল একদম ওপরে পাঠাবে
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (mainContent) {
+      mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     if (element) {
       UIManager.setActiveNavLink(element);
@@ -105,11 +125,22 @@ async function loadTextContent(filePath, element = null) {
     if (!response.ok) throw new Error('File not found: ' + filePath);
 
     const rawText = await response.text();
+    clearTimeout(showLoaderTimer);
+
     renderPage(rawText);
+
+    window.scrollTo(0, 0);
+    if (mainContent) mainContent.scrollTop = 0;
+
   } catch (error) {
+    clearTimeout(showLoaderTimer);
     console.error('Error loading text content:', error);
+    if (mainContent) {
+      mainContent.innerHTML = `<div class="error-msg">⚠️ কনটেন্ট লোড করতে সমস্যা হয়েছে।</div>`;
+    }
   }
 }
+
 
 // ---------------------------------------------
 // HEADER TITLE UPDATE HELPER
@@ -133,4 +164,8 @@ function renderPage(rawText) {
 
   const parsedElements = TagParser.parseText(rawText, rightSidebarNav);
   mainContent.appendChild(parsedElements);
+
+  mainContent.classList.remove('fade-in-content');
+  void mainContent.offsetWidth; 
+  mainContent.classList.add('fade-in-content');
 }
