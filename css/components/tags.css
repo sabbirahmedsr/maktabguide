@@ -8,7 +8,7 @@
  * ============================================================================== */
 
 .tag-title {
-  font-size: var(--size-title);
+  font-size: var(--font-size-title);
   font-weight: bold;
   color: var(--title-text-color);
   margin: 24px 0 12px 0;
@@ -26,7 +26,7 @@
   box-sizing: border-box;
   margin: 35px 0 25px 0;
   color: var(--section-text-color);
-  font-size: var(--size-section);
+  font-size: var(--font-size-section);
   font-weight: 700;
   gap: 12px; 
   word-break: break-word;
@@ -61,7 +61,7 @@
   padding: 16px 20px;
   margin: 18px 0;
   border-radius: var(--radius-md);
-  font-size: var(--size-base);
+  font-size: var(--font-size-base);
   color: inherit;
   box-shadow: 0 2px 5px var(--body-shadow);
   word-wrap: break-word;
@@ -75,7 +75,7 @@
   padding: 16px 20px;
   margin: 18px 0;
   border-radius: var(--radius-md);
-  font-size: var(--size-base);
+  font-size: var(--font-size-base);
   color: inherit;
   box-shadow: 0 2px 5px var(--body-shadow);
   word-wrap: break-word;
@@ -122,9 +122,10 @@
   flex-direction: column;       
   gap: 12px;
   margin: 20px 0;
-  font-size: var(--size-dialogue);
+  font-size: var(--font-size-dialogue);
   font-weight: 450;  
 }
+
 
 .teacher-msg {
   align-self: flex-start;       
@@ -136,6 +137,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   word-wrap: break-word;
 }
+
 
 .student-msg {
   align-self: flex-end;         
@@ -152,7 +154,7 @@
 .speaker-tag {
   font-weight: bold;            
   margin-bottom: 6px;            
-  font-size: var(--size-sub);
+  font-size: var(--font-size-sub);
 }
 
 .teacher-msg .speaker-tag { color: var(--teacher-speaker-text); }
@@ -174,24 +176,16 @@
   color: var(--board-text);
   border: 2px solid var(--board-border);                      
   padding: 24px;
-  border-radius: var(--radius-md);           
+  border-radius: var(--radius-md);            
   text-align: center;            
   margin: 20px 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   word-break: break-word;
-}
 
-.arabic-text {
-  direction: rtl;
-  text-align: right;
-  color: inherit; 
-  margin: 6px 0;
-}
-
-.arabic-text:nth-child(even) {
-  background-color: rgba(0, 0, 0, 0.02);
-  border-radius: var(--radius-sm, 4px);
-  padding: 2px 6px;
+  /* গ্লোবাল ভ্যারিয়েবল ব্যবহার করে আপডেট করা হলো */
+  font-family: var(--font-arabic);
+  font-size: var(--font-size-arabic);
+  line-height: var(--line-height-body);
 }
 
 .tag-note {
@@ -200,7 +194,7 @@
   padding: 14px 18px;
   margin: 16px 0;
   border-radius: var(--radius-sm);
-  font-size: var(--size-base);
+  font-size: var(--font-size-base);
   color: inherit;
   box-shadow: 0 4px 12px var(--note-shadow);
   word-wrap: break-word;
@@ -210,7 +204,7 @@
   font-weight: bold;
   color: var(--note-title-text);
   margin-bottom: 6px;
-  font-size: var(--size-sub);
+  font-size: var(--font-size-sub);
 }
 
 
@@ -252,7 +246,7 @@
 }
 
 .tag-image-caption {
-  font-size: var(--size-sub, 0.9rem);
+  font-size: var(--font-size-sub, 0.9rem);
   color: var(--text-muted, #666);
   text-align: center;
   margin-top: 6px;

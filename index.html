@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>মক্তব ডায়েরি - নূরানী কায়দা শিক্ষক গাইড</title>
+  <title>মক্তব ডায়েরি - নূরানী কায়দা শিক্ষক গাইড</title>
   
   <!-- FontAwesome CDN Link for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -45,9 +45,14 @@
     
     <!-- Left Navigation Sidebar -->
     <nav class="sidebar-left" id="sidebarLeft">
-      <div class="sidebar-title">কোর্স সূচিপত্র</div>
-      <ul class="nav-list">
-        <!-- Dynamic menu items will render here -->
+      <!-- Clickable Course Index Header -->
+      <a href="#" class="sidebar-title main-index-link" data-file-path="/content/P00_সূচীপত্র.txt">
+        <i class="fas fa-book-open"></i> কোর্স সূচিপত্র
+      </a>
+
+      <!-- Dynamic Accordion Menu Container -->
+      <ul class="nav-list" id="leftSidebarNav">
+        <!-- Dynamic menu sections & items will render here via JS -->
       </ul>
     </nav>
 

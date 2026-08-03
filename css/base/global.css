@@ -2,13 +2,12 @@
  *  GLOBAL THEME VARIABLES & RESET
  *  Centralized design tokens and foundational css rules for application.
  * ============================================================================== */
-
 :root {
   /* ----------------------------------------------------------------------------------------------------
    *  FONT FAMILIES & TYPOGRAPHY CONFIGURATION
    * -----------------------------------------------------------------------------------------------------*/
-  --font-base: 'Noto Sans Bengali', 'Rubik', 'Amiri', 'Segoe UI', sans-serif;
-  --font-arabic: 'Amiri', 'Rubik', 'Noto Sans Bengali', serif;
+  --font-base: 'Noto Sans Bengali', 'Rubik', 'Parastoo', 'Segoe UI', sans-serif;
+  --font-arabic: 'Parastoo', 'Rubik', 'Noto Sans Bengali', serif;
 
   /* ---------------------------------------------
    * FONT SIZES & LINE HEIGHTS
@@ -18,7 +17,7 @@
   --font-size-section: 1.35rem;        /* Section Headings */
   --font-size-dialogue: 1.25rem;       /* Dialogue Text Size */
   --font-size-sub: 1rem;               /* Subtitle & Links */
-  --font-size-arabic: 2.5rem;          /* Blackboard Arabic Size */
+  --font-size-arabic: 3.0rem;          /* Blackboard Arabic Size */
   --line-height-body: 1.7;
   
   /* ----------------------------------------------------------------------------------------------------
@@ -41,6 +40,9 @@
   --header-title-text: #f1c40f;
   --header-btn-hover-bg: rgba(255, 255, 255, 0.15);
 
+  /* ----------------------------------------------------------------------------------------------------
+   *  SIDEBAR & NAVIGATION TOKENS
+   * -----------------------------------------------------------------------------------------------------*/
   --sidebar-bg: #f4f6f5;
   --sidebar-border: #e0e0e0;
   --sidebar-title-text: #1a4d3e;
@@ -50,6 +52,18 @@
   --nav-link-active-text: #ffffff;
   --sidebar-overlay-bg: rgba(0, 0, 0, 0.4);
 
+  /* [note] Added tokens for accordion section cards & subtle interactions */
+  --sidebar-card-bg: #ffffff;
+  --sidebar-card-border: #e2e8f0;
+  --sidebar-card-border-active: #27ae60;
+  --sidebar-header-hover-bg: rgba(0, 0, 0, 0.04);
+  --nav-link-hover-bg: #e8ece9;
+  --nav-link-hover-text: #1a4d3e;
+  --nav-link-active-shadow: rgba(39, 174, 96, 0.25);
+
+  /* ----------------------------------------------------------------------------------------------------
+   *  CONTENT & UI MODULE TOKENS
+   * -----------------------------------------------------------------------------------------------------*/
   --title-text-color: #1a4d3e;
   --section-text-color: #059669;
   --section-line-color: #059669;
@@ -95,7 +109,6 @@
   --modal-input-focus-border: #059669;
 }
 
-
 /* ==============================================================================
  *  2. GLOBAL RESET & BASE DOM STYLES
  * ============================================================================== */
@@ -113,10 +126,24 @@ html, body {
 
 body {
   font-family: var(--font-base);
-  font-size: var(--size-base);
+  font-size: var(--font-size-base);
   line-height: var(--line-height-body);
   background-color: var(--bg-main);                          
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+
+.arabic-text {
+  direction: rtl;
+  text-align: right;
+  color: inherit; 
+  margin: 6px 0;
+}
+
+.arabic-text:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: var(--radius-sm, 4px);
+  padding: 2px 6px;
 }

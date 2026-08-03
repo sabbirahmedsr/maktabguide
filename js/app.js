@@ -9,6 +9,7 @@ import { SidebarComponent } from './components/sidebar.js';
 import { ContentViewerComponent } from './components/contentViewer.js';
 import { SettingsModalComponent } from './components/settingsModal.js';
 
+let structuredSections = [];
 let currentContents = [];
 
 /* ==============================================================================
@@ -16,7 +17,13 @@ let currentContents = [];
  *  Registers components and triggers initial content fetch.
  * ============================================================================== */
 document.addEventListener('DOMContentLoaded', async () => {
-  SidebarComponent.init();
+
+  // [Fix Here] SidebarComponent.init-এ ফাইল লোড করার ফাংশনটি পাস করা হলো
+  SidebarComponent.init((filePath, element) => {
+    localStorage.setItem('activeFilePath', filePath);
+    loadTextContent(filePath, element);
+  });
+
   SettingsModalComponent.init();
   
   HeaderComponent.init(
@@ -32,9 +39,11 @@ document.addEventListener('DOMContentLoaded', async () => {
  * ============================================================================== */
 async function initApp() {
   try {
-    currentContents = await ContentLoader.fetchContentList();
+    // [note] Flattening nested sections into flat array for global item reference
+    structuredSections = await ContentLoader.fetchContentList();
+    currentContents = structuredSections.flatMap(section => section.items || []);
 
-    SidebarComponent.renderLeftSidebar(currentContents, (filePath, element) => {
+    SidebarComponent.renderLeftSidebar(structuredSections, (filePath, element) => {
       localStorage.setItem('activeFilePath', filePath);
       loadTextContent(filePath, element);
     });
@@ -54,18 +63,18 @@ async function initApp() {
   }
 }
 
-
 /* ==============================================================================
  *  3. CONTENT LOADING CONTROLLER
  * ============================================================================== */
 async function loadTextContent(filePath, element = null) {
-  // ১. UI স্টেট (Sidebar & Header) আপডেট
+  // 1. UI State (Sidebar & Header) update
   if (element) {
     SidebarComponent.setActiveNavLink(element);
   } else {
-    const navLinks = document.querySelectorAll('.sidebar-left .nav-list a');
+    // [Fix Here] .main-index-link সহ চেক করবে যেন হেডার লিংকও অ্যাক্টিভ সিলেক্ট হয়
+    const navLinks = document.querySelectorAll('.sidebar-left .nav-list a, .main-index-link');
     navLinks.forEach(link => {
-      if (link.getAttribute('data-filepath') === filePath) {
+      if (link.getAttribute('data-filepath') === filePath || link.getAttribute('data-file-path') === filePath) {
         SidebarComponent.setActiveNavLink(link);
       }
     });
@@ -75,10 +84,13 @@ async function loadTextContent(filePath, element = null) {
     const matchedItem = currentContents.find(item => item.filePath === filePath);
     if (matchedItem && matchedItem.title) {
       HeaderComponent.updateTitle(matchedItem.title);
+    } else {
+      // যদি 'কোর্স সূচিপত্র' লোড হয়, তবে হেডার টাইটেল আপডেট করবে
+      HeaderComponent.updateTitle('কোর্স সূচিপত্র');
     }
   }
 
-  // ২. ContentViewer-কে ডেটা আনার প্রমিস (ContentLoader) দিয়ে দায়িত্ব হস্তান্তর
+  // 2. Delegate rendering task to ContentViewerComponent
   await ContentViewerComponent.loadAndRender(
     ContentLoader.fetchTextContent(filePath)
   );

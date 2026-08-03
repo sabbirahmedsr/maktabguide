@@ -32,7 +32,7 @@ header {
 }
 
 header h1#page-title {
-  font-size: var(--size-title);              
+  font-size: var(--font-size-title);              
   color: var(--header-title-text);
   margin: 0;
   text-align: center;

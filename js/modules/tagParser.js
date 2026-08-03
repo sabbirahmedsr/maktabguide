@@ -229,7 +229,7 @@ export const TagParser = {
     if (['board', 'brd', 'b'].includes(tagName)) {
       const div = document.createElement('div');
       div.className = 'tag-board';
-      div.innerHTML = `<div class="arabic-text">${content}</div>`;
+      div.innerHTML = content;
       return div;
     }
 

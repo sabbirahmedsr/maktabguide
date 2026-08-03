@@ -17,6 +17,9 @@
   --header-title-text: #fbbf24;        /* Soft Amber Gold */
   --header-btn-hover-bg: rgba(255, 255, 255, 0.12);
 
+  /* ----------------------------------------------------------------------------------------------------
+   *  SIDEBAR & NAVIGATION TOKENS (DARK MODE)
+   * -----------------------------------------------------------------------------------------------------*/
   --sidebar-bg: #1e293b;               /* Surface Dark */
   --sidebar-border: #334155;
   --sidebar-title-text: #2dd4bf;        /* Bright Mint Teal */
@@ -26,6 +29,18 @@
   --nav-link-active-text: #ffffff;
   --sidebar-overlay-bg: rgba(0, 0, 0, 0.65);
 
+  /* [note] Accordion section cards & hover tokens for dark theme */
+  --sidebar-card-bg: #0f172a;
+  --sidebar-card-border: #334155;
+  --sidebar-card-border-active: #0d9488;
+  --sidebar-header-hover-bg: rgba(255, 255, 255, 0.05);
+  --nav-link-hover-bg: #334155;
+  --nav-link-hover-text: #f8fafc;
+  --nav-link-active-shadow: rgba(13, 148, 136, 0.35);
+
+  /* ----------------------------------------------------------------------------------------------------
+   *  CONTENT & UI MODULE TOKENS (DARK MODE)
+   * -----------------------------------------------------------------------------------------------------*/
   --title-text-color: #2dd4bf;
   --section-text-color: #14b8a6;
   --section-line-color: #0d9488;
@@ -51,7 +66,7 @@
   --student-speaker-text: #fbbf24;
 
   /* Classroom Board Style */
-  --board-bg: #022c22;                 /* Dark Chalkboard Green */
+  --board-bg: #022c22;                 
   --board-border: #10b981;
   --board-text: #ffffff;
   --board-arabic-text: #fbbf24;

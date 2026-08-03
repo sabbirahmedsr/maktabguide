@@ -1,6 +1,53 @@
 [
-  { "title": "সূচীপত্র",                          "filePath": "content/P00_সূচীপত্র.txt" },
-  { "title": "ক্লাস শুরুর নিয়ম",                  "filePath": "content/P01A_ক্লাস_শুরুর_নিয়ম.txt"},
-  { "title": "বসার আদব, ডান-বাম",              "filePath": "content/P01B_বসার_আদব_ডান_বাম.txt" },
-  { "title": "আট ভাগের তরতিবে ২৯ হরফ",       "filePath": "content/P02A_আট_ভাগের_তরতিবে_২৯_হরফ.txt" }
+  {
+    "sectionTitle": "ক্লাসের সূচনা ও নিয়মাবলী",
+    "items": [
+      { "title": "সূচীপত্র", "filePath": "content/P00_সূচীপত্র.txt" },
+      { "title": "ক্লাস শুরুর নিয়ম", "filePath": "content/P01A_ক্লাস_শুরুর_নিয়ম.txt" },
+      { "title": "বসার আদব, ডান-বাম", "filePath": "content/P01_বসার_আদব_ডান_বাম/A_বসার_আদব_ডান_বাম.txt" }
+    ]
+  },
+  {
+    "sectionTitle": "হরফ পরিচিতি ও শিক্ষা",
+    "items": [
+      { "title": "আট ভাগের তরতিবে ২৯ হরফ", "filePath": "content/P02A_আট_ভাগের_তরতিবে_২৯_হরফ.txt" },
+      { "title": "২৯ হরফ শিক্ষা", "filePath": "content/P02B_২৯_হরফ_শিক্ষা.txt" },
+      { "title": "৩. তমিজের হরফ", "filePath": "content/P03_তমিজের_হরফ.txt" },
+      { "title": "৪. ক্বয়িদার তরতিবে ২৯ হরফ", "filePath": "content/P04_ক্বায়িদার_তরতিবে_২৯_হরফ.txt" }
+    ]
+  },
+  {
+    "sectionTitle": "হরকত, মদ ও লিন",
+    "items": [
+      { "title": "৫. হরকতে সালাসা", "filePath": "content/P05_হরকতে_সালাসা.txt" },
+      { "title": "৬. হরকতে সালাসার তমিজ", "filePath": "content/P06_হরকতে_সালাসার_তমিজ.txt" },
+      { "title": "৭. মুরাক্কাব ও মুরাক্কাবের নকশা", "filePath": "content/P07_মুরাক্কাব_ও_নকশা.txt" },
+      { "title": "৮. মদের হরফ", "filePath": "content/P08_মদের_হরফ.txt" },
+      { "title": "৯. হরকতে সালাসা এবং মদের হরফের পার্থক্য", "filePath": "content/P09_হরকত_ও_মদের_পার্থক্য.txt" },
+      { "title": "১০. লিনের হরফ", "filePath": "content/P10_লিনের_হরফ.txt" },
+      { "title": "১১. মদের হরফ এবং লিনের হরফের পার্থক্য", "filePath": "content/P11_মদ_ও_লিনের_পার্থক্য.txt" },
+      { "title": "১২. মদ্দে লিন", "filePath": "content/P12_মদ্দে_লিন.txt" },
+      { "title": "১৩. খাড়া জবর, খাড়া জের ও উল্টা পেশ", "filePath": "content/P13_খাড়া_জবর_জের_উল্টা_পেশ.txt" },
+      { "title": "১৪. মদ মোট ১০ প্রকার", "filePath": "content/P14_মদ_১০_প্রকার.txt" }
+    ]
+  },
+  {
+    "sectionTitle": "জজম, তাশদিদ ও অন্যান্য নিয়মাবলী",
+    "items": [
+      { "title": "১৫. জজম ও ক্বলক্বলা", "filePath": "content/P15_জজম_ও_ক্বলক্বলা.txt" },
+      { "title": "১৬. তাশদিদের উচ্চারণ", "filePath": "content/P16_তাশদিদের_উচ্চারণ.txt" },
+      { "title": "১৭. ওয়াজিব গুন্নাহ", "filePath": "content/P17_ওয়াজিব_গুন্নাহ.txt" },
+      { "title": "১৮. নুন সাকিন ও তানভীনের বিবরণ", "filePath": "content/P18_নুন_সাকিন_ও_তানভীন.txt" },
+      { "title": "১৯. মিম সাকিনের বিবরণ", "filePath": "content/P19_মিম_সাকিনের_বিবরণ.txt" },
+      { "title": "২০. লফজা আল্লাহ ও 'র' এর পুর ও বারিক", "filePath": "content/P20_লফজা_আল্লাহ_ও_র.txt" },
+      { "title": "২১. লফজা আউজু", "filePath": "content/P21_লফজা_আউজু.txt" }
+    ]
+  },
+  {
+    "sectionTitle": "সূরা ও আদিয়ায়ে সালাত",
+    "items": [
+      { "title": "২২. ১১ সূরা", "filePath": "content/P22_১১_সূরা.txt" },
+      { "title": "২৩. আদিয়ায়ে সালাত", "filePath": "content/P23_আদিয়ায়ে_সালাত.txt" }
+    ]
+  }
 ]
